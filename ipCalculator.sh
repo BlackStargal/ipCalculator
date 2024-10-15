@@ -40,15 +40,16 @@ helpPannel(){
   echo -e "\nExample of usage:\n\n${redColour}$0${endColour} 192.168.10.12/24\n"
 }
 calcType(){
-  echo "$binIP"
-  if [ "${binIP:0:1}" == "0" ];then
+  if [ "${binNetwork:0:1}" == "0" ];then
     ipType="A"
-  elif [ "${binIP:0:2}" == "10" ]; then
+  elif [ "${binNetwork:0:2}" == "10" ]; then
     ipType="B"
-  elif [ "${binIP:0:3}" == "110" ]; then
+  elif [ "${binNetwork:0:3}" == "110" ]; then
     ipType="C"
-  elif [ "${binIP:0:4}" == "1110" ]; then
+  elif [ "${binNetwork:0:4}" == "1110" ]; then
     ipType="D"
+  elif [ "${binNetwork:0:4}" == "1111" ]; then
+    ipType="E"
   fi
   # ipType=""
 }
@@ -162,7 +163,7 @@ echo -e "${grayColour}\nResults for${endColour} ${redColour}$1${endColour}\n"
 echo -e "\n${purpleColour}######### Decimal data #########${endColour}\n"
 echo -e "IP ->\t\t\t${yellowColour}$ip${endColour}\n"
 echo -e "Mask ->\t\t\t${yellowColour}$mask${endColour}\n"
-echo -e "IP Type ->\t\t${yellowColour}$ipType${endColour}\n"
+echo -e "Class ->\t\t${yellowColour}$ipType${endColour}\n"
 echo -e "CIDR ->\t\t\t${yellowColour}$cidr${endColour}\n"
 echo -e "Hosts ->\t\t${yellowColour}$hosts${endColour}\n"
 echo -e "Usable Hosts ->\t\t${yellowColour}$uhosts${endColour}\n"
